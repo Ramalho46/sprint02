@@ -1,0 +1,97 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "codigo": "0223",
+      "descricao": "Arroz",
+      "und": "pct",
+      "quantidade": "10",
+      "preco": 12.98
+    },
+    {
+      "id": "2",
+      "codigo": "1432",
+      "descricao": "Feijão",
+      "und": "pct",
+      "quantidade": "12",
+      "preco": 9.98
+    },
+    {
+      "id": "3",
+      "codigo": "1253",
+      "descricao": "Macarrão",
+      "und": "pct",
+      "quantidade": "75",
+      "preco": 7.9
+    },
+    {
+      "id": "4",
+      "codigo": "1762",
+      "descricao": "Biscoito",
+      "und": "pct",
+      "quantidade": "52",
+      "preco": 4.58
+    }
+  ],
+  "vendas": [
+    {
+      "id": "a0f9",
+      "vendedor": "joão",
+      "num_pedido": "909360",
+      "data": "17/05/2025",
+      "pagamento": "pix",
+      "itens": [
+        {
+          "codigo": "0223",
+          "descricao": "Arroz",
+          "und": "pct",
+          "quantidade": 10,
+          "preco": 12.98,
+          "total": 129.8
+        }
+      ]
+    },
+    {
+      "id": "476a",
+      "vendedor": "joão",
+      "num_pedido": "529533",
+      "data": "18/05/2025",
+      "pagamento": "pix",
+      "itens": [
+        {
+          "codigo": "0223",
+          "descricao": "Arroz",
+          "und": "pct",
+          "quantidade": 111,
+          "preco": 12.98,
+          "total": 1440.78
+        },
+        {
+          "codigo": "1432",
+          "descricao": "Feijão",
+          "und": "pct",
+          "quantidade": 15,
+          "preco": 9.98,
+          "total": 149.7
+        }
+      ]
+    },
+    {
+      "id": "d5c8",
+      "vendedor": "joão",
+      "num_pedido": "158365",
+      "data": "18/05/2025",
+      "pagamento": "pix",
+      "itens": [
+        {
+          "codigo": "0223",
+          "descricao": "Arroz",
+          "und": "pct",
+          "quantidade": 100,
+          "preco": 12.98,
+          "total": 1298
+        }
+      ]
+    }
+  ]
+}
