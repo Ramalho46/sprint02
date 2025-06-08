@@ -23,23 +23,26 @@
   <main class="container mt-4">
     <div id="msg"></div>
 
+    <div class="container py-4">
     <section id="vendas">
-      <h4>Registrar Venda</h4>
-      <table id="grid-vendas" class="table table-bordered">
-        <thead>
+      <h4 class="mb-3">Registrar Venda</h4>
+      <table id="grid-vendas" class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
           <tr>
-            <th>Código</th>
             <th>Descrição</th>
+            <th>Código</th>
             <th>Und</th>
             <th>Quantidade</th>
             <th>Preço</th>
             <th>Total</th>
+            <th class="text-center">Excluir</th>
           </tr>
         </thead>
         <tbody id="tableVendas"></tbody>
       </table>
       <button id="btnSalvar" class="btn btn-success">Salvar Venda</button>
     </section>
+  </div>
 
     <div class="mt-4">
       <a href="exibeVendas.html" class="btn btn-secondary">Vendas Realizadas</a>
