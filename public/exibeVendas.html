@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <title>Vendas Registradas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    header, footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    </style>
 </head>
 <body class="bg-light">
+    <header>
+        <h1>Gestão Inteligente</h1>
+        <p>Lista de vendas</p>
+    </header>
 
-<div class="container mt-5">
+    
+    <div class="container mt-5">
+        <div id="msg"></div>
     <h2 class="mb-4">Vendas Realizadas</h2>
     <div id="vendasContainer"></div>
     <a href="index.html" class="btn btn-secondary mt-3">← Voltar</a>
 </div>
-
+<footer class="mt-5">
+    <p>@ 2025 - Sistema de Gestão de Estoque</p>
+</footer>
 <script>
 const API_URL = "http://localhost:3000/";
+
+function displayMessage(text, tipo = 'warning') {
+    const mensagem = document.getElementById("msg");
+      mensagem.innerHTML = `<div class="alert alert-${tipo}">${text}</div>`;
+    }
 
 function agruparPorData(vendas) {
     return vendas.reduce((agrupado, venda) => {
@@ -32,12 +53,17 @@ function excluirVenda(id) {
         method: "DELETE"
     })
     .then(res => {
+        const data = document.querySelector('h5');
+        if(data === '')
+            data.remove();
+
         if (!res.ok) throw new Error("Erro ao excluir venda");
         document.getElementById(`card-venda-${id}`).remove();
+        window.location.reload();
     })
     .catch(err => {
         console.error(err);
-        alert("Erro ao excluir venda.");
+        displayMessage("Erro ao excluir venda.");
     });
 }
 
@@ -56,11 +82,6 @@ function salvarEdicao(id) {
         };
     });
 
-    const vendaAtualizada = {
-        formaPagamento,
-        itens
-    };
-
     fetch(`${API_URL}vendas/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -71,12 +92,14 @@ function salvarEdicao(id) {
     })
     .then(res => {
         if (!res.ok) throw new Error("Erro ao salvar edição.");
-        alert("Venda atualizada com sucesso!");
-        location.reload(); // Atualiza para refletir os dados atualizados
+        displayMessage("Venda atualizada com sucesso!");
+        setTimeout(() =>{
+            location.reload();
+        }, 3000);
     })
     .catch(err => {
         console.error(err);
-        alert("Erro ao salvar alterações.");
+        displayMessage("Erro ao salvar alterações.");
     });
 }
 
@@ -128,11 +151,12 @@ function criarCardVenda(venda) {
                     <select class="form-select" name="formaPagamento-${venda.id}">
                         <option value="pix" ${venda.pagamento === "pix" ? "selected" : ""}>Pix</option>
                         <option value="dinheiro" ${venda.pagamento === "dinheiro" ? "selected" : ""}>Dinheiro</option>
-                        <option value="cartao" ${venda.pagamento === "cartao" ? "selected" : ""}>Cartão</option>
+                        <option value="Cartão de Crédito" ${venda.pagamento === "Cartão de Crédito" ? "selected" : ""}>Cartão de Crédito</option>
+                        <option value="Cartão de Débito" ${venda.pagamento === "Cartão de Débito" ? "selected" : ""}>Cartão de Débito</option>
                     </select>
                 </div>
                 ${editarHTML}
-                <button class="btn btn-success mt-3" onclick="salvarEdicao(${venda.id})">Salvar Alterações</button>
+                <button type="button" class="btn btn-success mt-3" onclick="salvarEdicao('${venda.id}')">Salvar Alterações</button>
             </div>
         </div>
     </div>

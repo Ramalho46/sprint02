@@ -51,9 +51,15 @@
                     `;
 
                 item.addEventListener('click', () => {
-                    window.location.href = `index.html?descricao=${encodeURIComponent(produto.descricao)}`;
-                });
+                    const linhasExistentes = [...document.querySelectorAll('#tableVendas tr')].map(tr => {
+  const input = tr.querySelector('input.inputNome');
+  return input ? input.value.trim() : null;
+}).filter(desc => desc);
 
+localStorage.setItem('vendasTemp', JSON.stringify(linhasExistentes));
+
+window.location.href = `index.html?descricao=${encodeURIComponent(produto.descricao)}`;
+                });
                 lista.appendChild(item);
                 });
             })
